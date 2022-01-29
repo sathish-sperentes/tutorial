@@ -1,0 +1,26 @@
+// Git Commands used commonly
+
+git status
+
+# To add a single file
+git add <file_name>
+git commit -m "<Comment>"
+
+# To add multiple or all files
+git add -A
+git commit -m "<Comment>"
+
+// NPM Commands used commonly
+# To save the package locally in your project root and add an entry in package.json
+npm install --save-dev <package_name>
+
+# To install a package globally in your system
+npm install -g <package_name>
+
+# To run node command on a file
+node <path/to/file>
+
+# gulp build Commands
+gulp
+
+# 

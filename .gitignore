@@ -14,3 +14,7 @@ node_modules
 *.bak
 
 *.log
+
+# ES6 files in the below folders should be ignored
+dist/
+public/dist/
