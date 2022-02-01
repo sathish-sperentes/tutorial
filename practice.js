@@ -198,3 +198,90 @@ function sayHello() {
     console.log("Привет мир!");
 }
 sayHello();
+
+function getGreeting() {
+    return "Hello World!";
+}
+console.log(getGreeting());
+
+function avg(a, b) {
+    return (a+b)/2;
+}
+console.log(avg(3, 6));
+
+function getSentence ({ subject, verb, object }) {
+    return `${subject} ${verb} ${object}`;
+}
+const o = {
+    subject: "I",
+    verb: "Love",
+    object: "Javascript",
+};
+console.log(getSentence(o));
+
+// ES6 Arrow Notation examples
+/* 
+const f1 = function() { return "hello!"; }
+// OR
+const f1 = () => "hello!";
+
+const f2 = function(name) { return `Hello, ${name}!`; }
+// OR
+const f2 = name => `Hello, ${name}!`;
+
+const f3 = function(a, b) { return a + b; }
+// OR
+const f3 = (a,b) => a + b;
+*/
+
+const back = {
+    name: 'Julie',
+    greetBackwards: function() {
+        // ES6 Arrow Notation => used for assigning function to a variable as an object
+        const getReverseName = () => {
+            let nameBackwards = '';
+            for(let i=this.name.length-1; i>=0; i--) {
+                nameBackwards += this.name[i];
+            }
+            return nameBackwards;
+        };
+        return `${getReverseName()} si eman ym ,olleH`;
+    },
+};
+console.log(back.greetBackwards());
+
+const bruce = { name: 'Brue' };
+const madeline = { name: 'Madeline' };
+// this function is not associated with any object, yet it's using 'this'!
+function greet() {
+    return `Hello, I'm ${this.name}!`;
+    
+}
+console.log(greet());   // "Hello, I'm !" - 'this' not bound
+console.log(greet.call(bruce));   // "Hello, I'm Bruce!" - 'this' bound to 'bruce'
+console.log(greet.call(madeline));   // "Hello, I'm Bruce!" - 'this' bound to 'madeline'
+
+function update(birthYear, occupation) {
+    this.birthYear = birthYear;
+    this.occupation = occupation;
+
+    return `Hello, I'm ${this.name} born in ${this.birthYear} working as a ${this.occupation}!`;
+}
+update.call(bruce, 1949, 'singer');
+// bruce is now { name: "Bruce", birthYear: 1949, occupation: "singer" }
+update.call(madeline, 1962, 'actress');
+// madeline is now { name: "Madeline", birthYear: 1962, occupation: "actress" }
+
+update.apply(bruce, [1955, "actor"]);
+// bruce is now { name: "Bruce", birthYear: 1955, occupation: "actor" }
+update.apply(madeline, [1918, "writer"]);
+// madeline is now { name: "Madeline", birthYear: 1918, occupation: "writer" }
+
+// There’s one final function that allows you to specify the value for 'this' : bind. bind
+// allows you to permanently associate a value for 'this' with a function
+const updateBruce = update.bind(bruce);
+updateBruce(1904, "actor");
+// bruce is now { name: "Bruce", birthYear: 1904, occupation: "actor" }
+updateBruce.call(madeline, 1274, "king");
+// bruce is now { name: "Bruce", birthYear: 1274, occupation: "king" };
+// madeline is unchanged
